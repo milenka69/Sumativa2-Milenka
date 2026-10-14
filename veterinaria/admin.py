@@ -9,6 +9,9 @@ class ClienteAdmin (admin.ModelAdmin):
 
 @admin.register(Atencion)
 class AtencionAdmin (admin.ModelAdmin):
-    list_display = ('fecha', 'nombre_mascota', 'tipo_animal', 'costo', 'dueño')
-    list_editable = ('nombre_mascota', 'tipo_animal', 'costo', 'dueño')
+    list_display = ('fecha', 'nombre_mascota', 'tipo_animal', 'costo_formateado', 'dueño')
+    list_editable = ('nombre_mascota', 'tipo_animal', 'dueño')
     search_fields = ('tipo_animal', 'fecha', 'dueño')
+
+    def costo_formateado (self, obj):
+        return f"${obj.costo:,}".replace(',' , '.')
