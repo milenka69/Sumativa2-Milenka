@@ -5,12 +5,14 @@ from veterinaria.models import Cliente, Atencion
 class ClienteAdmin (admin.ModelAdmin):
     list_display = ('nombre','rut','email','numero_telefono')
     list_editable = ('rut','email','numero_telefono')
+    list_filter = ('nombre',)
     search_fields = ('nombre',)
 
 @admin.register(Atencion)
 class AtencionAdmin (admin.ModelAdmin):
     list_display = ('fecha', 'nombre_mascota', 'tipo_animal', 'costo_formateado', 'dueño')
     list_editable = ('nombre_mascota', 'tipo_animal', 'dueño')
+    list_filter = ('tipo_animal',)
     search_fields = ('tipo_animal', 'fecha', 'dueño')
 
     def costo_formateado (self, obj):
